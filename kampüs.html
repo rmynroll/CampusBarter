@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Barter | Giriş & Kayıt</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            /* Light Mode Palette */
+            --bg-body: #F0F2F5;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A2E;
+            --text-secondary: #6c757d;
+            --primary-brand: #6366F1;
+            /* Indigo */
+            --primary-hover: #4F46E5;
+            --accent-color: #F43F5E;
+            /* Rose */
+            --input-bg: #F8F9FA;
+            --input-border: #E9ECEF;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Mode Palette */
+            --bg-body: #0F172A;
+            --bg-card: #1E293B;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --primary-brand: #818CF8;
+            --primary-hover: #6366F1;
+            --accent-color: #FB7185;
+            --input-bg: #334155;
+            --input-border: #475569;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dynamic Background Shapes */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary-brand);
+            top: -50px;
+            left: -50px;
+        }
+
+        .shape-2 {
+            width: 250px;
+            height: 250px;
+            background: var(--accent-color);
+            bottom: -50px;
+            right: -50px;
+        }
+
+        .auth-card {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .brand-title {
+            color: var(--primary-brand);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .form-control {
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            color: var(--text-primary);
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            background: var(--bg-card);
+            border-color: var(--primary-brand);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+            color: var(--text-primary);
+        }
+
+        .form-control::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-brand) 0%, var(--primary-hover) 100%);
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            width: 100%;
+            transition: all 0.3s;
+            margin-top: 10px;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .btn-link:hover {
+            color: var(--primary-brand);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 2px solid var(--input-border);
+            color: var(--text-primary);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg) scale(1.1);
+            border-color: var(--primary-brand);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <!-- Theme Toggle -->
+    <div onclick="toggleTheme()" class="theme-toggle">
+        <i id="theme-icon" class="bi bi-moon-fill"></i>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="login-form" class="auth-card">
+        <div class="mb-2">
+            <h2 class="brand-title">Campus<span style="color:var(--accent-color)">Barter</span></h2>
+            <div
+                style="background: rgba(99, 102, 241, 0.1); color: var(--primary-brand); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; display: inline-block; margin-bottom: 20px;">
+                ✨ Kampüslüye Özel
+            </div>
+            <p style="color: var(--text-secondary);">Öğrenci hesabınla giriş yap.</p>
+        </div>
+
+        <input type="email" id="login-email" class="form-control" placeholder="öğrenci maili"
+            value="ruveydameryem.yilmaz@st.uskudar.edu.tr">
+        <input type="password" id="login-password" class="form-control" placeholder="Şifre">
+
+        <p id="login-error" class="text-danger small mt-2 fw-bold"></p>
+
+        <button onclick="login()" class="btn btn-primary">
+            Giriş Yap <i class="bi bi-arrow-right-short fs-5 align-middle"></i>
+        </button>
+
+        <div class="mt-3">
+            <span class="btn-link" onclick="toggleForms()">Hesabın yok mu? Kayıt Ol</span>
+        </div>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="register-form" class="auth-card hidden">
+        <div class="mb-2">
+            <h2 class="brand-title">Aramıza Katıl 🚀</h2>
+            <p style="color: var(--text-secondary);">Sadece .edu.tr ile kayıt olabilirsin.</p>
+        </div>
+
+        <input type="email" id="reg-email" class="form-control" placeholder="öğrenci maili">
+        <input type="password" id="reg-password" class="form-control" placeholder="Şifre belirle">
+        <input type="password" id="reg-password-confirm" class="form-control" placeholder="Şifreyi onayla">
+
+        <p id="reg-error" class="text-danger small mt-2 fw-bold"></p>
+
+        <button onclick="register()" class="btn btn-primary">
+            Kayıt Ol & Başla
+        </button>
+
+        <div class="mt-3">
+            <span class="btn-link" onclick="toggleForms()">Zaten hesabın var mı? Giriş Yap</span>
+        </div>
+    </div>
+
+    <script>
+        // --- MOCK LOGIC ---
+        const VALID_EMAIL = "ruveydameryem.yilmaz@st.uskudar.edu.tr";
+        const VALID_PASS = "240209017";
+
+        function initTheme() {
+            const theme = localStorage.getItem('cb_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            updateThemeIcon(theme);
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const newTheme = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('cb_theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('theme-icon');
+            if (theme === 'dark') {
+                icon.classList.remove('bi-moon-fill');
+                icon.classList.add('bi-sun-fill');
+            } else {
+                icon.classList.remove('bi-sun-fill');
+                icon.classList.add('bi-moon-fill');
+            }
+        }
+
+        function toggleForms() {
+            document.getElementById('login-form').classList.toggle('hidden');
+            document.getElementById('register-form').classList.toggle('hidden');
+            document.getElementById('login-error').innerText = "";
+            document.getElementById('reg-error').innerText = "";
+        }
+
+        window.addEventListener('load', () => {
+            initTheme();
+            const user = localStorage.getItem('cb_user');
+            if (user) window.location.href = "dashboard.html";
+        });
+
+        function login() {
+            const email = document.getElementById('login-email').value.trim();
+            const pass = document.getElementById('login-password').value.trim();
+            const err = document.getElementById('login-error');
+
+            err.innerText = "";
+
+            // Mock Check + Local Storage Check (for newly registered users)
+            const storedUser = localStorage.getItem('cb_registered_' + email);
+
+            if ((email === VALID_EMAIL && pass === VALID_PASS) || (storedUser && JSON.parse(storedUser).pass === pass)) {
+                localStorage.setItem('cb_user', email);
+                window.location.href = "dashboard.html";
+            } else {
+                err.innerText = "⛔ Hatalı mail veya şifre.";
+            }
+        }
+
+        function register() {
+            const email = document.getElementById('reg-email').value.trim();
+            const pass = document.getElementById('reg-password').value.trim();
+            const passConf = document.getElementById('reg-password-confirm').value.trim();
+            const err = document.getElementById('reg-error');
+
+            err.innerText = "";
+
+            if (!email.endsWith(".edu.tr")) {
+                err.innerText = "⚠️ Sadece öğrenci maili (.edu.tr) kabul edilir.";
+                return;
+            }
+            if (pass.length < 6) {
+                err.innerText = "⚠️ Şifre en az 6 karakter olmalı.";
+                return;
+            }
+            if (pass !== passConf) {
+                err.innerText = "⚠️ Şifreler eşleşmiyor.";
+                return;
+            }
+
+            // Save Mock User
+            localStorage.setItem('cb_registered_' + email, JSON.stringify({ pass: pass }));
+            alert("✅ Kayıt başarılı! Giriş yapabilirsin.");
+            toggleForms();
+            document.getElementById('login-email').value = email;
+        }
+    </script>
+</body>
+
+</html>
