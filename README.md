@@ -1,11 +1,11 @@
-# 🎓 Campus Takas  
+# 🎓 CampusBarter**
 **Student-to-Student Sharing & Barter Platform**
 
 ---
 
 ## 📌 Overview
 
-**Campus Takas** is a student-only digital platform that enables **free sharing**, **bartering**, and **student-friendly exchanges** within university campuses.  
+**CampusBarter** is a student-only digital platform that enables **free sharing**, **bartering**, and **student-friendly exchanges** within university campuses.  
 Access is restricted to verified academic email addresses (.edu / .edu.tr) to ensure trust and safety.
 
 Unlike traditional marketplaces, Campus Takas **does not prioritize profit**.  
